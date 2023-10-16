@@ -1,0 +1,14 @@
+.data/
+.git/
+.mypy_cache/
+.pytest_cache/
+.mypy_cache/
+__pycache__/
+dist
+venv
+
+.coverage
+.dockerignore
+.env*
+!.env
+celerybeat-schedule

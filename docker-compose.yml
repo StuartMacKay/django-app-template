@@ -1,0 +1,63 @@
+version: '3.1'
+
+services:
+  postgres:
+    image: postgres:15
+    ports:
+      - "${DOCKER_POSTGRES_PORT_FORWARD-5432}:5432"
+    volumes:
+      - ${PGDATA-./.data/db}:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "${POSTGRES_USER-postgres}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD-postgres}"
+      POSTGRES_DB: "${POSTGRES_DB-postgres}"
+
+  rabbitmq:
+    image: rabbitmq:3.11.9-management
+    environment:
+      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER-guest}"
+      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS-guest}"
+      RABBITMQ_DEFAULT_VHOST: "${RABBITMQ_DEFAULT_VHOST}"
+
+  web:
+    stdin_open: true
+    tty: true
+    build: .
+    command: /code/docker-init.sh
+    volumes: &web-volumes
+      - ./:/code
+    ports:
+      - "${DOCKER_WEB_PORT_FORWARD-8000}:8000"
+    depends_on: &web-depends-on
+      - postgres
+      - rabbitmq
+    environment: &web-environment
+      POSTGRES_USER: "${POSTGRES_USER-postgres}"
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD-postgres}"
+      POSTGRES_DB: "${POSTGRES_DB-postgres}"
+      POSTGRES_HOST: "${POSTGRES_HOST-postgres}"
+      POSTGRES_PORT: "${POSTGRES_PORT-5432}"
+      CELERY_BROKER_URL: "${CELERY_BROKER_URL-amqp://guest:guest@rabbitmq:5672/}"
+
+  flower:
+    image: mher/flower
+    ports:
+      - "${DOCKER_FLOWER_PORT_FORWARD-5555}:5555"
+    command: celery flower --broker_api=http://feeds:feeds@broker:15672/api/feeds
+    depends_on:
+      - rabbitmq
+    environment: *web-environment
+
+  celery-beat:
+    build: .
+    command: celery --app demo beat --loglevel debug
+    volumes: *web-volumes
+    depends_on: *web-depends-on
+    environment: *web-environment
+
+  celery-worker:
+    build: .
+    command: celery --app demo worker --loglevel debug
+    volumes: *web-volumes
+    depends_on: *web-depends-on
+    environment: *web-environment
