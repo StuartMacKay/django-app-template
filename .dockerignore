@@ -10,4 +10,3 @@ venv
 .dockerignore
 .env*
 !.env
-celerybeat-schedule

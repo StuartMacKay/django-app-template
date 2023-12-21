@@ -1,6 +1,5 @@
 #
-# Dockerfile: configuration for building the images for the web app,
-# celery-beat and celery-worker.
+# Dockerfile: configuration for building the images for the web app.
 #
 
 # Base python image

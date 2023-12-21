@@ -12,17 +12,7 @@ services:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD-postgres}"
       POSTGRES_DB: "${POSTGRES_DB-postgres}"
 
-  rabbitmq:
-    image: rabbitmq:3.11.9-management
-    ports:
-      - "${DOCKER_RABBITMQ_PORT_FORWARD-5672}:5672"
-      - "${DOCKER_RABBITMQ_MANAGEMENT_PORT_FORWARD-15672}:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: "${RABBITMQ_DEFAULT_USER-guest}"
-      RABBITMQ_DEFAULT_PASS: "${RABBITMQ_DEFAULT_PASS-guest}"
-      RABBITMQ_DEFAULT_VHOST: "${RABBITMQ_DEFAULT_VHOST}"
-
-  django: &django
+  django:
     stdin_open: true
     tty: true
     build: .
@@ -40,27 +30,3 @@ services:
       POSTGRES_DB: "${POSTGRES_DB-postgres}"
       POSTGRES_HOST: "${POSTGRES_HOST-postgres}"
       POSTGRES_PORT: "${POSTGRES_PORT-5432}"
-      CELERY_BROKER_URL: "${CELERY_BROKER_URL-amqp://guest:guest@rabbitmq:5672/}"
-
-  celery-beat:
-    <<: *django
-    depends_on:
-      - postgres
-      - rabbitmq
-    ports: []
-    command: celery beat --loglevel DEBUG
-
-  celery-worker:
-    <<: *django
-    ports: []
-    command: celery worker --loglevel DEBUG
-
-  flower:
-    image: mher/flower
-    ports:
-      - "${DOCKER_FLOWER_PORT_FORWARD-5555}:5555"
-    command: celery flower
-    depends_on:
-      - rabbitmq
-    environment:
-      CELERY_BROKER_URL: "${CELERY_BROKER_URL-amqp://guest:guest@rabbitmq:5672/}"
