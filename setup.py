@@ -26,7 +26,7 @@ setup(
     author_email="developer@example.com",
     keywords="django, app, template",
     url="https://github.com/StuartMacKay/django-app_template",
-    packages=["app_project", "app_project/migrations"],
+    packages=["app_project"],
     package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
