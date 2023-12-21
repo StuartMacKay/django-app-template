@@ -14,7 +14,6 @@ Features
 * Testing with `pytest <https://docs.pytest.org/>`_ and `FactoryBoy: <https://factoryboy.readthedocs.io/en/stable/>`_
 * Manage versions with `bump-my-version <https://github.com/callowayproject/bump-my-version>`_ - for semantic or calendar version numbers
 * Manage dependencies with `pip-tools <https://github.com/jazzband/pip-tools>`_
-* Manage dependency upgrades with `pip-upgrader <https://github.com/simion/pip-upgrader>`_
 
 Quick start
 -----------

@@ -25,5 +25,4 @@ json-log-formatter
 bump-my-version
 django-debug-toolbar
 django-stubs
-pip-upgrader
 twine
