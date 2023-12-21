@@ -10,7 +10,7 @@
 * Development with [isort](https://pycqa.github.io/isort/) for automatically sorting imports
 * Development with [mypy](https://mypy-lang.org/) for type-hinting to catch errors
 * Testing with [pytest](https://docs.pytest.org/), [FactoryBoy](https://factoryboy.readthedocs.io/en/stable/) and [tox](https://tox.wiki/en/latest/)
-* Manage versions with [bump2version](https://pypi.org/project/bump2version/) - for semantic version numbers
+* Manage versions with [bump-my-version](https://github.com/callowayproject/bump-my-version) - for semantic version numbers
 * Manage dependency versions with [pip-tools](https://github.com/jazzband/pip-tools)
 * Manage dependency upgrades with [pip-upgrade](https://github.com/simion/pip-upgrader)
 

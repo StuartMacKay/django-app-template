@@ -22,7 +22,7 @@ json-log-formatter
 # point where bump2version emerges as the official bumpversion, see
 # https://github.com/c4urself/bump2version/issues/86
 
-bump2version
+bump-my-version
 django-debug-toolbar
 django-stubs
 pip-upgrader

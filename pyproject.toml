@@ -1,5 +1,58 @@
+[tool.bumpversion]
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?"
+current_version = "0.0.0"
+commit = true
+commit_args = "-S"
+message = "New version: {new_version}"
+tag = true
+tag_name = "v{new_version}"
+sign_tags = true
+
+[[tool.bumpversion.files]]
+filename = "src/app_project/__init__.py"
+search = "__version__ = \"{current_version}\""
+replace = "__version__ = \"{new_version}\""
+
+# The order in which the version numbers in docs/conf.py is important.
+# If the release number is not processed first (using the default
+# regex for parsing) then you will get the following output:
+#
+#   version = "0.0"
+#   release = "version = "0.0""
+#
+# This has been reported as an issue to bump2version:
+# https://github.com/c4urself/bump2version/issues/159
+
+[[tool.bumpversion.files]]
+filename = "docs/conf.py"
+search = "release = \"{current_version}\""
+replace = "release = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "./docs/conf.py"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)"
+serialize = [
+    "{major}.{minor}"
+]
+search = "version = \"{current_version}\""
+replace = "version = \"{new_version}\""
+
+[[tool.bumpversion.files]]
+filename = "CHANGELOG.md"
+search = "## Latest"
+replace = """
+## Latest
+
+# {new_version} ({now:%%Y-%%m-%%d})
+"""
+
+[[tool.bumpversion.files]]
+filename = "setup.py"
+search = "version=\"{current_version}\""
+replace = "version=\"{new_version}\""
+
 [tool.black]
 line-length = 88
 target-version = [
-    'py311'
+    "py311"
 ]
