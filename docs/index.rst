@@ -1,5 +1,6 @@
-Welcome to Django App Project's documentation!
-==============================================
+===============================================
+Welcome to Django App Template's documentation!
+===============================================
 
 Contents:
 

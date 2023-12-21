@@ -20,7 +20,7 @@ setup(
     name="django-app-template",
     version="0.0.0",
     description="A project template for reusable Django apps.",
-    long_description=read("README.md"),
+    long_description=read("README.rst"),
     long_description_content_type="text/x-rst",
     author="A Developer",
     author_email="developer@example.com",
