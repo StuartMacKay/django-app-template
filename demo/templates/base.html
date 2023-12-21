@@ -14,8 +14,6 @@
   <title>{% block title %}{{ request.site.name }}{% endblock %}</title>
 
   {% block css %}
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/site.css' %}" rel="stylesheet">
   {% endblock %}
 
   {% block javascript %}
@@ -28,27 +26,15 @@
   {% endblock %}
 
   {% block messages %}
-    <div class="mb-4">
+    <div>
       {% for message in messages %}
       {% endfor %}
     </div>
   {% endblock %}
 
   {% block main %}
-    <div class="container-fluid">
-      <div class="row">
-        {% block content %}
-          {% block sidebar %}
-            <div class="col-sm-4">
-            </div>
-          {% endblock %}
-          {% block main %}
-            <main class="col-sm-8">
-            </main>
-          {% endblock %}
-        {% endblock %}
-      </div>
-    </div>
+    <main>
+    </main>
   {% endblock %}
 
   {% block footer %}
@@ -57,7 +43,6 @@
   {% endblock %}
 
   {% block extra_js %}
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/index.js' %}"></script>
   {% endblock %}
 

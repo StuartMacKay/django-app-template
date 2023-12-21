@@ -34,12 +34,21 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "demo.urls"
 
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+STATICFILES_DIRS = [
+    os.path.join(DEMO_DIR, "static"),
+]
+
 STATIC_URL = "/static/"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(DEMO_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
