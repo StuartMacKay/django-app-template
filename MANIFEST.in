@@ -1,11 +1,8 @@
 # Manifest used for source and binary distributions.
 
-# Only need to explicitly include the copyright notice and the changelog.
-# The readme, licence and manifest files all pet pulled in automatically
-# or from the settings in setup.py
-
-include COPYRIGHT.txt
-include CHANGELOG.rst
+# Notes:
+# The CHANGELOG, COPYRIGHT, LICENSE and README are included automatically.
+# Excluding *.py[co] also excludes empty parent, __pycache__, directory.
 
 exclude setup.cfg
 exclude pyproject.toml
@@ -14,6 +11,4 @@ recursive-include src/app_project/ *
 
 recursive-exclude src/app_project/tests *
 
-recursive-exclude * .cache
-recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
