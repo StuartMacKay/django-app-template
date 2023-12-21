@@ -20,30 +20,43 @@ Quick start
 This is a GitHub template repository. Simply create a new repository from it
 or open it in a Code Space. The repository will contain a single commit.
 
-After you checkout your repository, the first step is to build the virtualenv
-and install all the dependencies. This will also build the library:
+After you checkout your repository, the first step is to rename the app:
 
 ..  code-block:: shell
 
-    make install
+    ./bin/rename-app myapp
 
-Now run the demo site:
-
-..  code-block:: shell
-
-    make demo
-
-Run the database migrations:
+Next, build the virtualenv and install all the dependencies. This will also
+build the library containing the app:
 
 ..  code-block:: shell
 
-    ./manage.py migrate
+    python3 -m venv .venv
+    source .venv/bin/activate
+    pip install --upgrade pip setuptools wheel
+    pip install pip-tools
+
+Optional. The project is shipped with pinned versions for the dependencies.
+If you want to upgrade to the latest versions then recompile the requirements
+source files:
+
+..  code-block:: shell
+
+    pip-compile --upgrade requirements/dev.in
+    pip-compile --upgrade requirements/docs.in
+    pip-compile --upgrade requirements/tests.in
+
+Install the dependencies:
+
+..  code-block:: shell
+
+    pip-sync requirements/dev.txt
 
 Run the tests:
 
 ..  code-block:: shell
 
-    make tests
+    pytest
 
 Run the django server:
 
@@ -53,9 +66,3 @@ Run the django server:
 
 Open a browser and visit http://localhost:8000 and, voila, we have a working
 site. Well cover the deployment later.
-
-Almost all steps used the project Makefile. That's great if you're running
-Linux with GNU Make and not much fun if you're not. All is not lost, however.
-All the Makefile's targets contain only one or two commands, so even if you
-are running Windows you should still be able to get the site running without
-too much effort.

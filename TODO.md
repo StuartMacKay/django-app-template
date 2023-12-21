@@ -13,8 +13,3 @@ Here is what is planned, roughly in the order it will be implemented:
 
 This area is permanent work in progress. It's a collection of ideas, not all of 
 them sensible, and things that might be useful some day or never.
-
-### Add a makefile target to rename the app
-
-The name of the app, app_projects, appears all over the place. Add a Makefile
-target that uses sed to rename app_project to the app that will be developed.

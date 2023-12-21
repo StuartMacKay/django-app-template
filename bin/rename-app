@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Rename the Django app
+#
+# Usage:
+#     source bin/rename-app myapp
+#
+# This script is intended to be used once, right after the template
+# has been checked out of the repository. You can delete it afterwards.
+
+sed -i "s/app_project/$1/" Makefile
+sed -i "s/\/app_project/\/$1/g" MANIFEST.in
+sed -i "s/\/app_project/\/$1/g" pyproject.toml
+sed -i "s/app_project/$1/" setup.cfg
+sed -i "s/\"app_project/\"$1/g" setup.py
+sed -i "s/app_project/$1/" demo/settings.py
+sed -i "s/app_project/$1/" demo/urls.py
+sed -i "s/app_project/$1/" src/app_project/templates/app_project/index.html
+sed -i "s/app_project/$1/" src/app_project/views/index.py
+sed -i "s/app_project/$1/" src/app_project/apps.py
+mv src/app_project/templates/app_project src/app_project/templates/$1
+mv src/app_project src/$1
