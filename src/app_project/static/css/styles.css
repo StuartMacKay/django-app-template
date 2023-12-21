@@ -1,0 +1,28 @@
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.mt-24 {
+  padding-top: 6rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.text-xl {
+	font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-center	{
+  text-align: center;
+}
