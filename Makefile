@@ -139,15 +139,6 @@ requirements: requirements/dev.txt requirements/docs.txt requirements/tests.txt
 venv: $(venv_dir) requirements
 	$(pip-sync) requirements/dev.txt
 
-.PHONY: install
-install: venv
-	$(pip) install --upgrade pip setuptools wheel
-	$(pip) install pip-tools
-	test -f requirements/docs.txt || $(pip-compile) requirements/docs.in
-	test -f requirements/dev.txt || $(pip-compile) requirements/dev.in
-	test -f requirements/tests.txt || $(pip-compile) requirements/tests.in
-	$(pip-sync) requirements/dev.txt
-
 # ##########
 #   Checks
 # ##########
