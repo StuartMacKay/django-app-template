@@ -3,7 +3,7 @@
 #
 
 # Base python image
-FROM python:3.11.5-slim-bookworm
+FROM python:3.12-slim-bookworm
 # Add the project to the python path
 ENV PYTHONPATH /app
 # Send all output on stdout and stderr straight to the container logs
@@ -28,16 +28,17 @@ RUN apt-get install -y --no-install-recommends \
 
 # Install project requirements
 
-# Copy across all the files needed to install feeds as an editable
-# package since the volume has not been mounted yet.
+# Copy across all the files needed to install the app as an editable
+# package since the volume has not been mounted yet. The assumption
+# is that, at least initially, Docker is just used to run the demo
+# demo site to avoid having to install PostgreSQL natively.
 
 COPY setup.py .
 COPY README.md .
 COPY src ./src
 
-COPY requirements/dev.txt /tmp/requirements.txt
+COPY requirements/demo.txt /tmp/requirements.txt
 
 RUN pip install --upgrade setuptools pip wheel \
     && pip install pip-tools \
     && pip install -r /tmp/requirements.txt
-
