@@ -1,0 +1,10 @@
+-r demo.in
+
+# Integration testing
+pytest
+pytest-django
+pytest-factoryboy
+
+# Version testing
+tox
+pytest-pyenv

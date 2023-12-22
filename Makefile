@@ -123,21 +123,24 @@ $(venv_dir):
 	$(pip) install --upgrade pip setuptools wheel
 	$(pip) install pip-tools
 
-requirements/dev.txt: requirements/dev.in requirements/docs.in requirements/tests.in
-	$(pip-compile) requirements/dev.in
+requirements/demo.txt: requirements/demo.in
+	$(pip-compile) requirements/demo.in
+
+requirements/development.txt: requirements/development.in requirements/docs.in requirements/demo.in
+	$(pip-compile) requirements/development.in
 
 requirements/docs.txt: requirements/docs.in
 	$(pip-compile) requirements/docs.in
 
-requirements/tests.txt: requirements/docs.in requirements/tests.in
-	$(pip-compile) requirements/tests.in
+requirements/test.txt: requirements/test.in requirements/demo.in
+	$(pip-compile) requirements/test.in
 
 .PHONY: requirements
-requirements: requirements/dev.txt requirements/docs.txt requirements/tests.txt
+requirements: requirements/demo.txt requirements/development.txt requirements/docs.txt requirements/test.txt
 
 .PHONY: venv
 venv: $(venv_dir) requirements
-	$(pip-sync) requirements/dev.txt
+	$(pip-sync) requirements/development.txt
 
 # ##########
 #   Checks

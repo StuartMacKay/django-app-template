@@ -1,0 +1,13 @@
+# Packages need to run the demo site
+django
+json-log-formatter
+psycopg2-binary
+
+# Install the app.
+# CRITICALLY IMPORTANT: Every time you recompile dev.in with pip-compile
+# you MUST edit the requirements file used in the Dockerfile (the default
+# is demo.txt) to restore the entry for the feeds package to be a relative
+# path, i.e. change the entry "-e file:///<path to>/django-app-template"
+# to "-e ." otherwise you won't  be able to build the docker containers.
+
+-e .

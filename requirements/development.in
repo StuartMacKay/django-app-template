@@ -1,0 +1,23 @@
+-r demo.in
+-r docs.in
+-r test.in
+
+# Type checking
+django-stubs
+mypy
+
+# Linting
+black
+flake8
+isort
+
+# Developer tools
+django-debug-toolbar
+
+# Packaging
+bump-my-version
+twine
+
+# Documentation
+sphinx
+sphinx-rtd-theme
