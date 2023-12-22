@@ -4,7 +4,7 @@
 #
 #    pip-compile requirements/demo.in
 #
--e file:///home/stuart/Development/django-app-template
+-e .
     # via -r requirements/demo.in
 asgiref==3.7.2
     # via django

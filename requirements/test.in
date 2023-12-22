@@ -7,4 +7,4 @@ pytest-factoryboy
 
 # Version testing
 tox
-pytest-pyenv
+virtualenv-pyenv
