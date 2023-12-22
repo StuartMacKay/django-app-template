@@ -10,7 +10,7 @@ DEBUG = os.getenv("DJANGO_DEBUG", 'False').lower() in ('true', '1', 't')
 DEMO_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(DEMO_DIR)
 
-SECRET_KEY = "+^%b!5_!ul7prtm_y0w_xluJg32aqna&+)&thhy3)jqr2g*0%s"
+SECRET_KEY = "django-insecure +^%b!5_!ul7prtm_y0w_xluJg32aqna&+)&thhy3)jqr2g*0%s"
 
 INSTALLED_APPS = (
     "django.contrib.admin",
