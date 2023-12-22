@@ -33,8 +33,6 @@ setup(
     python_requires=">=3.8",
     install_requires=[
         "Django>=3.2",
-        "django-extensions",
-        "psycopg2-binary",
     ],
     license="License :: OSI Approved :: Apache Software License",
     classifiers=[
